@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Optistobranchs of Sodwana Bay</title>
+    <meta charset="utf-8" />
+    <link href="css/Site.css" rel="stylesheet" />
+    <script src="libs/jquery-3.1.1.min.js"></script>
+    <script src="js/site.js"></script>  
+    <link href="css/featherlight.min.css" rel="stylesheet">
+    <script src="libs/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="libs/es6-promise.min.js"></script>
+    <script src="tablefilter/tablefilter.js"></script>
+    
+</head>
+<body onload="addTableLines()">
+    <div id="pageheaderdiv"></div>
+
+    <div id="pagebodydiv">
+        Note: This list is a working document and will be updated as new information is added to the site database.<br />
+        <table id="listtable" style="color: whitesmoke; background-color: rgba(64, 64, 64, 1);">
+            <thead>
+                <tr class="tableheader">
+                    <th class="headertd">Photo, Species &amp; Photographer</th>
+                    <th class="headertd">Body Type</th>
+                    <th class="headertd">Background Color</th>
+                    <th class="headertd">Lines</th>
+                    <th class="headertd">Patches</th>
+                    <th class="headertd">Rings</th>
+                    <th class="headertd">Margins</th>
+                    <th class="headertd">Dorsal Appendadges</th>
+                    <th class="headertd">Oral Appendadges</th>
+                    <th class="headertd">Rhinophores</th>
+                    <th class="headertd">Gills</th>
+                    <th class="headertd">Name</th>
+                </tr>
+            </thead>
+            <tbody id="tablebody">
+                <!--species rows will be injected here-->
+            </tbody>
+        </table> 
+    </div>
+    
+    <script>
+
+        function addRow(template, imgfile, photographer, genusname, specname, specff,aliases,l_w_ratio,maxlen,bodytype,backcolor,lines,patches,rings,margins,dorsalapp,ceratadetail,oralapp,rhinophoreshape,rhinophoredetail,gillshape,gills,name,other,dummy) {
+            //if the factfile is not specified, remove the hyperlink
+            if (specff == '') {
+                template = template.replace(/<a href='http:\/\/www.seaslugforum.net\/showall\/<specff \/>' target='_blank'><genusname \/> <specname \/><\/a>/g, "<genusname /> <specname />");
+            }
+            
+            // replace placeholder tags
+            template = template
+                .replace(/<imgfilename \/>/g, imgfile)
+                .replace(/<photographer \/>/g, photographer)
+                .replace(/<specname \/>/g, specname)
+                .replace(/<genusname \/>/g, genusname)
+                .replace(/<l_w_ratio \/>/g, l_w_ratio)
+                .replace(/<maxlen \/>/g, maxlen)
+                .replace(/<aliases \/>/g, aliases)
+                .replace(/<specff \/>/g, specff)
+                .replace(/<bodytype \/>/g, bodytype)
+                .replace(/<backcolor \/>/g, backcolor)
+                .replace(/<lines \/>/g, lines)
+                .replace(/<patches \/>/g, patches)
+                .replace(/<rings \/>/g, rings)
+                .replace(/<margins \/>/g, margins)
+                .replace(/<dorsalapp \/>/g, dorsalapp)
+                .replace(/<ceratadetail \/>/g, ceratadetail)
+                .replace(/<oralapp \/>/g, oralapp)
+                .replace(/<rhinophoreshape \/>/g, rhinophoreshape)
+                .replace(/<rhinophoredetail \/>/g, rhinophoredetail)
+                .replace(/<gillshape \/>/g, gillshape)
+                .replace(/<gills \/>/g, gills)
+                .replace(/<name \/>/g, name)
+                .replace(/<other \/>/g, other);
+
+            // append row to table
+            $("#tablebody").append(template);
+        }
+
+        function addallrows(data) {
+            // Start - populate list
+addRow(data, 'IMG_8100.jpg', 'R. Marx', 'Aegires', 'lemoncello', 'aegilemo','','6:1',' 15','Aeoliid','Pale yellow/white/creamy-yellow','','','','','Papillae','translucent yellow-cream,bulbous with flattened tip, yellow band','None','Simple','Translucent orange','','Translucent','"lemoncello" = yellow','','');
+addRow(data, 'IMG_3819.jpg', 'P. Laubscher', 'Aegires', 'sp.4 [Rudman]', 'aegisp4','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'DSCN4380.jpg', 'R. Marx', 'Aegires', 'villosus', 'aegivill','','6:1',' 15','Aeoliid','Translucent-white/creame','broken purple longitudinal lines','purple spots and patches','','','Papillae','Translucent-white to orange papillae, some tipped in purple, some in yellow','Conical tentacles','Simple','Translucent orange with purple tips or purple with yellow tips','','Translucent','"villosus" = hairy','','');
+addRow(data, 'IMG_7876.jpg', 'R. Marx', 'Aldisa', 'sp.4 [Rudman]', 'aldisp4','sp.5 [Gosliner, Behrens & Valdes]','2:1',' 30','Phylidiid','Orange','orange/yellow, reticulated','Areas of ligher orange/yellow laterally on sides of body and in pits on medial dorsum','','','Reticulated ridges','','None','Lamellate','Dark orange clubs, lighter orange stalks','Branched','Darker orange','Unnamed','','');
+addRow(data, 'IMG_9198.jpg', 'R. Marx', 'Aphelodoris', 'sp.4 [Rudman]', 'aphesp4','','4:1',' 30','Doriid','Pale yellow/white/creamy-yellow','','Dark brown/black patches spread over dorsum','','','Smooth','','None','Lamellate','Black clubs, translucent white stalks','','','Unnamed','','');
+addRow(data, 'pl034.jpg', 'P. Laubscher', 'Aplysia', 'dactylomela', 'aplydact','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_8336.jpg', 'R. Marx', 'Aplysia', 'parvula', 'aplyparv','','4:1',' 60','Other','Brown, Olive green or pink','','White and yellow specks and patches consisting of clusters of specks','','Black, broken edge on parapodia','Parapodia','','Tentacles','Rolled','translucent brown/olive green with white specs','','','','','');
+addRow(data, 'IMG_5760.jpg', 'R. Marx', 'Aplysia', 'parvula', 'aplyparv','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_5650-2.jpg', 'R. Marx', 'Armina', 'sp.8 [Rudman]', 'armisp8','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_3879.jpg', 'R. Marx', 'Bornella', 'anguilla', 'bornangu','','8:1',' 80','Aeoliid','Brown','','Irregularly sized spots cover the body densely in  orange/pale yellow/olive green/white','','','Cerata - Paddle-shaped','Black, white and orange-margined, each folding around gill structures','Tentacles','Fluted pulpit','Translucent white lamellae and stalk, in a sheath similarly patterned to the rest of the body','star-shaped','translucent white with opaque white midline and cillia','anguilla = eel, it swims like an eel','','');
+addRow(data, 'pl027.jpg', 'P. Laubscher', 'Bornella', 'sp.3 [Gosliner et al.]', 'bornsp1','sp.1 [Rudman]','','','','','','','','','','','','','','','','','','');
+addRow(data, 'pl015.jpg', 'P. Laubscher', 'Bullina', 'oblonga', 'bulloblo','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'pl012.jpg', 'P. Laubscher', 'Cadlina', 'ornatisima', 'cadlorna','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'DSCN2491.jpg', 'R. Marx', 'Caloria', 'sp.1 [Gosliner et al.]', '','Phidiana sp.','','','','','','','','','','','','','','','','','','');
+addRow(data, 'pl032.jpg', 'P. Laubscher', 'Ceratosoma', 'gracillimum', 'ceragrac','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'pl016.jpg', 'P. Laubscher', 'Ceratosoma', 'moloch', 'ceramolo','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_5585-2.jpg', 'R. Marx', 'Ceratosoma', 'tenue', 'ceratenu','','8:1',' 80','Aeoliid','Brown-yellow','','Orange/yellow sports on dorsum','','Translucent white with broken purple mantle margin','Mantle lobes','','None','Lamellate','yellow/orange lamellae and stalk with white specks, and puple tips','','','','3 mantle lobes and broken purple mantle margin is distinctive','');
+addRow(data, 'CO001.jpg', 'C. Ogden', 'Cerberilla', 'africana', 'cerbafri','','6:1',' 50','Aeoliid','Translucent white','','','','','Cerata - Swollen','Arranged in crowded rows.Grey to blue, with multiple bands:black, yellow, orange and tipped in yellow, but colours vary considerably','Long tentacles','Simple','Very short. Translucent white with a blue band','','','','','');
+addRow(data, 'DSCN4334.jpg', 'R. Marx', 'Chelidonura', 'punctata', 'chelpunc','','6:1',' 80','aglajids','Dark red-brown','','Large orange spots','','Fine white margin on parapodia','Parapodia','','Sensory hairs','Not visible','','Internal','','"Cheli" = chela-like tails','feed on flatworms','');
+addRow(data, 'DSCN5210.jpg', 'R. Marx', 'Chromodoris', 'africana', 'chroafri','','4:1',' 80','Doriid','Black','2 Longitudinal, white','','','Yellow with white sub-margin','Smooth','','None','Lamellate','Yellow','Feathers','Yellow','"Chromo" = colour, "africana" = from Africa','','');
+addRow(data, 'DSCN5776.jpg', 'R. Marx', 'Chromodoris', 'aspersa', 'chraspe','','6:1',' 30','Doriid','White','','Purple on postules','Pale purple rings arround postules','Orange/yellow','Postules','','None','Lamellate','Orange with translucent base and white tips','Feathers','Translucent-white/yellow','"aspersa" = asparagus','','');
+addRow(data, 'co002.jpg', 'C. Ogden', 'Chromodoris', 'boucheti', 'chrobouc','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_4763.jpg', 'R. Marx', 'Chromodoris', 'decora', 'chrdec','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_4795.jpg', 'R. Marx', 'Chromodoris', 'decora', 'chrdec','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_0062.jpg', 'R. Marx', 'Chromodoris', 'hamiltoni', 'chrohami','','5:1',' 50','Doriid','Blue','Longitudinal, black','Orange area mid-dorsum','','Yellow/Orange with white sub-margin','Smooth','','None','Lamellate','Orange','Feathers','Orange','"Chroma" = colour, "hamiltoni" = in honour of an individual','','');
+addRow(data, 'CO004.jpg', 'C. Ogden', 'Chromodoris', 'mandapamensis', 'chromand','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_5341-2.jpg', 'R. Marx', 'Chromodoris', 'strigata', 'chrostri','','4:1',' 30','Doriid','Blue/White','Black irregular longitudinal','Dark translucent patches behind rhinophores, centre of dorsum and a pair in front of gills','','Yellow/Orange','Smooth','','None','Lamellate','Orange/yellow with white core','Feathers','Orange/yellow','"strigata" = stripes','','');
+addRow(data, 'IMG_5510-2.jpg', 'R. Marx', 'Colpodaspis', 'sp.', '','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'CO005.jpg', 'C. Ogden', 'Cratena', 'affinis', 'cratcfaffi','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_1562.jpg', 'R. Marx', 'Cuthona', 'sibogae', 'cuthsp4','Trinchesia sibogae, Cuthone sp.4 [Rudman]','4:1',' 35','Aeoliid','Pale lilac purple','','','','','Cerata - Cylindrical','pale lilac-purple, yellow tip and deep redish-purple to purple band','Tentacles','Simple','reddish-purple','','','','','');
+addRow(data, 'DSCN5605.jpg', 'R. Marx', 'Dendrodoris', 'denisoni', 'denddeni','','','','','','','','','','','','','','','','','"dendro"="tree-like", doris="disk"','','');
+addRow(data, 'pl008.jpg', 'P. Laubscher', 'Dendrodoris', 'denisoni', 'denddeni','','','','','','','','','','','','','','','','','"dendro"="tree-like", doris="disk"','','');
+addRow(data, 'pl001.jpg', 'P. Laubscher', 'Dermatobranchus', 'ornatus', 'dermorna','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'co006.jpg', 'C. Ogden', 'Diaphorodoris', 'mitsuii', 'diapmits','','4:1',' 8','Doriid','Yellow or white','Medial yellow line on foot','fine lines covering body forming a fine mesh','','Yellow margin with orange-red submargin','Cerata - Tuberculate','Small white/yellow terbucles','None','Lamellate','transparent white with orange band and white tip','Feathers','5 or 6 gills, white or yellow','','','');
+addRow(data, 'IMG_3664.jpg', 'R. Marx', 'Diversidoris', 'aurantionodulosa', 'diveaura','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_7096.jpg', 'R. Marx', 'Doris', 'sp.1 [Rudman]', 'dorisp1','Doriid sp.','2:1',' 40','Doriid','Yellow','','Black tops on cerata','','','Cerata - Rounded','Yellow stalk, black top','','Lamellate','Yellow base and stalk, black club','Branched','yellow main branch, black cillia','','','');
+addRow(data, 'IMG_5843.jpg', 'R. Marx', 'Durvilledoris', 'pusilla', 'durvpusi','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_5696.jpg', 'R. Marx', 'Elysia', 'ornata', 'elysorna','Elysia marginata','6:1',' 50','Aeoliid','Translucent green','','Black and white spots','','Black margin and yellow/orange sub-marginal band and faint white markings','Parapodia','','None','Rolled','Black edges, orange submarginal band and white. Green base.','Dermal','','"ornata" = elaborately or highly decorated','','');
+addRow(data, 'IMG_3856.jpg', 'R. Marx', 'Elysiella', 'pusilla (cyl. form)', 'elyspus2','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'co007.jpg', 'C. Ogden', 'Favorinus', 'japonicus', 'favojap','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'co008.jpg', 'C. Ogden', 'Favorinus', 'tsuruganus', 'favotsur','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'co009.jpg', 'C. Ogden', 'Fiona', 'pinnata', 'fionpinn','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_7298.jpg', 'R. Marx', 'Flabellina', 'bicolor', 'flabbico','','6:1',' 40','Aeoliid','Translucent white','','may have irregular opaque white patches','','','Cerata - Cylindrical','White with transparent white base, orange/golden sub-terminal band and yellow/white tip','Flattened tentacles','Lamellate','Transparent white base, brown/cream club','','','"bicolor" = of two colors','waves oral tentacles as it crawls','');
+addRow(data, 'co010.jpg', 'C. Ogden', 'Flabellina', 'exoptata', 'flabexop','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_5755.jpg', 'R. Marx', 'Flabellina', 'riwo', 'flabriwo','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_7265.jpg', 'R. Marx', 'Flabellina', 'rubrolineata', 'flabrub','','4:1',' 25','Aeoliid','Translucent purple','Purple - medio-dorsal line, may be broken','','','','Cerata - Elongated','Transparent purple with purple sub-terminal band and whitish tip','Tentacles','papillate','uniformly purple','','','"rubro-" = purple, "lineata" = lined','','');
+addRow(data, 'IMG_7118.jpg', 'R. Marx', 'Fryeria', 'marindica', 'fryemari','','4:1',' 25','Phylidiid','Blue-grey','2 Longitudinal, black','Yello/orange on top of tubercules','','','Cerata - Tuberculate','yellow tops','None','Simple','Yellow / orange','Under Mantel skirt','','','','');
+addRow(data, 'IMG_7387.jpg', 'R. Marx', 'Glaucid', 'sp.1 [Rudman]', 'valdaf6','','6:1',' 30','Aeoliid','Yellow','','','','','Cerata - Conical','White','Long tentacles','papillate','Orange, white tip','','','','','');
+addRow(data, 'DSCN2533.jpg', 'R. Marx', 'Glossodoris', 'atromarginata', 'glosatro','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_8091.jpg', 'R. Marx', 'Glossodoris', 'cincta', 'gloscinc','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_5668-2.jpg', 'R. Marx', 'Glossodoris', 'hikuerensis', 'gloshiku','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_7175.jpg', 'R. Marx', 'Glossodoris', 'pallida', 'glospall','','4:1',' 35','Doriid','Translucent white','','Distinct symmetric opaque patches on dorsum','','Yellow','Smooth','','None','Lamellate','Translucent white with opaque white or yellow edging on lamellae','Feathers','White with yellow edging','','','');
+addRow(data, 'IMG_5339-2.jpg', 'R. Marx', 'Glossodoris', 'sp.5 [Gosliner et al.]', 'gloscinc','Glossodoris cincta','4:1',' 100','Doriid','Red-brown','','White specs cover the dorsum','','Black outer and yellow inner margin','Smooth','','None','Lamellate','red/brown with white specs','Feathers','transparent white with white specs and black edges','','','');
+addRow(data, 'pl007.jpg', 'P. Laubscher', 'Glossodoris', 'symmetricus', 'glossymm','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'DSCN4234.jpg', 'R. Marx', 'Glossodoris', 'symmetricus', 'glossymm','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_8090.jpg', 'R. Marx', 'Glossodoris', 'undaurum', 'glosunda','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'DSCN4202.jpg', 'R. Marx', 'Goniobranchus', 'alderi', 'chrotinc','Chromodoris alderi, Goniobranchus reticulatus, Doris tinctoria, Doris reticulata, Chromodoris inopinata, Chromodoris tinctoria, Chromodoris tinctorius','','','','','','','','','','','','','','','','"gonio"=angled, "branchus" = gills','','');
+addRow(data, 'co003.jpg', 'C. Ogden', 'Goniobranchus', 'cavae', 'chrocava','Chromodoris cavae','4:1',' 30','Doriid','Yellow/White and sometimes brownish sub-marginal areas','','Lots of small Yellow spots covering dorsum, larger purple areas on postules','white rings around postules','Purple','Postules','','None','Lamellate','Purple, lightening to a translucent white base','Feathers','White with purple cillia','"cavae" = hollow','','');
+addRow(data, 'IMG_5539-2.jpg', 'R. Marx', 'Goniobranchus', 'conchyliatus', 'chroconc','Chromodoris conchyliata','4:1',' 30','Doriid','pale purple','Reticulated, dark purple','Yellow areas on postules','','','Postules','','None','Lamellate','Red/orange with white tip','Feathers','White with red/orange tips and edges','"conchyliatus" = dressed in purple','','');
+addRow(data, 'IMG_9343.jpg', 'R. Marx', 'Goniobranchus', 'conchyliatus', 'chroconc','Chromodoris conchyliata','4:1',' 30','Doriid','pale purple','Reticulated, dark purple','Yellow areas on postules','','','Postules','','None','Lamellate','Red/orange with white tip','Feathers','White with red/orange tips and edges','"conchyliatus" = dressed in purple','','');
+addRow(data, 'pl018.jpg', 'P. Laubscher', 'Goniobranchus', 'fidelis', 'chrofide','Chromodoris fidelis','4:1',' 30','Doriid','White','','','','Undulated Orange margin with thin wine-red sub-margin','Smooth','','None','Lamellate','Dark purple, almost black with transparent white base and white tip','Feathers','Dark purple, almost black','"fidelis" = loyal/faithfull','','');
+addRow(data, 'IMG_4877.jpg', 'R. Marx', 'Goniobranchus', 'geminus', 'chrogemi','Chromodoris gemina','2:1',' 30','Doriid','Yellow','','Dark purple','white rings around spots','White, grey-purple, blue, white, yellow moving inward','Smooth','','None','Lamellate','Yellow lamellae, translucent white base and white tip','Feathers','White with brown cillia','"geminus" = twin','','');
+addRow(data, 'pl003.jpg', 'P. Laubscher', 'Goniobranchus', 'geminus (cf.)', 'chrocfge','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_8476.jpg', 'R. Marx', 'Goniobranchus', 'geometricus', 'chrogeom','Chromodoris geometrica','4:1',' 30','Doriid','Translucent-pink/purple','','White tips on postules','Undulating Dark purple/black ring encircles dorsum, rhinophores and gills. May contain white-tipped postules','','Postules','','None','Lamellate','White with olive-green tips / lamellae','Feathers','Translucent-white with olive-green tips','"geometricus" = geometric/regularly patterned','','');
+addRow(data, 'IMG_3638.jpg', 'R. Marx', 'Goniobranchus', 'lekker', 'chrolekk','Chromodoris lekker','4:1',' 30','Doriid','Translucent-white','','Opaque white patches showing through background. Purple spots in margin and sub-margins','','Broken opaque white edge, Orange margin, pale purple band ','Postules','','None','Lamellate','Translucent white with white lamellae','Feathers','White cores with translucent white cillia','"lekker" = afrikaans word meaning delicious/good','','');
+addRow(data, 'pl025.jpg', 'P. Laubscher', 'Goniobranchus', 'roboi', 'chrorob','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'pl033.jpg', 'P. Laubscher', 'Goniobranchus', 'tennentanus', 'chrotenn','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_7364.jpg', 'R. Marx', 'Goniobranchus', 'tinctorius', 'chrotinc','Chromodoris tinctoria','4:1',' 80','Doriid','White','Fine reticulated pattern in red, concentrating on midial line of dorsum','Red spots in a sub-marginal circle around mantle','','Yellow','Postules','','None','Lamellate','Red / Brown / Grey with white spots or white-edged lamellae','Feathers','translucent white with red/brown edging','"tinctorius" = stained/dyed','','');
+addRow(data, 'IMG_5704.jpg', 'R. Marx', 'Goniobranchus', 'verrieri', 'chroverr','Chromodoris verrieri','4:1',' 30','Doriid','White','','','','Red with yellow sub-margin','Irregular','','None','Lamellate','Translucent white/red with white edged lamellae','Cabbage','Translucent white with white lines','"verrieri" in honour of individual','','');
+addRow(data, 'co011.jpg', 'C. Ogden', 'Goniodoridella', 'savignyi', 'gonisavi','','4:1',' 7','Other','Translucent white','mid-dorsal longitudinal Yellow/brown line on ridge crest','opaque white specs','','Yellow/brown margin on anteriar and lateral mantle','Raised mantle, medial ridge and 2 cerata behind gills','White with yellow/brown tips','None','Simple','White with yellow/brown tips','Cylindrical','White with yellow/brown tips','','','');
+addRow(data, 'IMG_9200.jpg', 'R. Marx', 'Goniodoris', 'albonares', 'chralbo','Chromodoris albonares','4:1',' 15','Doriid','White','','','','Orange','Smooth','','','Lamellate','Relatively huge, translucent white with white edged lamellae','','Translucent-white','"albonares" = big nose','','');
+addRow(data, 'DSCN4243.jpg', 'R. Marx', 'Goniodoris', 'albopunctatus', 'chroalbop','Chromodoris albopunctata','4:1',' 50','Doriid','Red to yellow','','','Small white covering dorsum','Pale blue','Smooth','','None','Lamellate','Red with white spots','Feathers','Red with white edges and spots','"albo" = white, "punctatus" = spotted','','');
+addRow(data, 'DSCN4203.jpg', 'R. Marx', 'Goniodoris', 'alius', 'chroaliu','Chromodoris alius','4:1',' 30','Doriid','Creamy-white','','Brown, irregular sized','','Broken purple','Smooth','','None','Lamellate','Orange-red with white edged lamellae','Cabbage','Translucent-white','"alius" = another','','');
+addRow(data, 'pl023.jpg', 'P. Laubscher', 'Goniodoris', 'annulatus', 'chroannu','Chromodoris annulata','4:1',' 30','Doriid','Creamy-White','','Yellow on postules','Purple rings arround rhinophores and gills','Dark purple','Postules','','None','Lamellate','Purple with darker purple edged lamellae','Feathers','White with purple cillia','"annulatus" = ringed','','');
+addRow(data, 'IMG_5598-2.jpg', 'R. Marx', 'Goniodoris', 'sp.1 [Rudman]', 'gonisp1','sp.2 [Gosliner et al.]','4:1',' 10','Other','Opaque white','','Brownish specks close to foot edge and side of mantle','','brownish, sometimes broken foot-margin made up of small specks.','Raised mantle','','Tentacles','papillate','Translucent white, brownish tip','Feathers','White','','','');
+addRow(data, 'IMG_7378.jpg', 'R. Marx', 'Gymnodoris', 'aurita', 'gymnauri','','4:1',' 100','Doriid','Orange','','Yellow on postules','','Yellow margin on foot','Small Raised bumps','Orange base with yellow top','None','Simple','Yellow','Cabbage','Light orange branches with darker orange cillia','"aurita" = golden','','');
+addRow(data, 'DSCN4173.jpg', 'R. Marx', 'Gymnodoris', 'citrina', 'gymncitr','','4:1',' 25','Doriid','translucent orange/white','','yellow specs','','','Tiny cillia','yellow','Short tentacles','Simple','white/yellow/brown-ish club','Cabbage','translucent white/yellow','"citrina" = like lemon','','');
+addRow(data, 'IMG_7071.jpg', 'R. Marx', 'Gymnodoris', 'citrina', 'gymncitr','','4:1',' 25','Doriid','translucent orange/white','','yellow specs','','','Tiny cillia','yellow','Short tentacles','Simple','white/yellow/brown-ish club','Cabbage','translucent white/yellow','"citrina" = like lemon','','');
+addRow(data, 'IMG_3614.jpg', 'R. Marx', 'Gymnodoris', 'rubropapulosa', 'gymnrubr','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'DSCN5665.jpg', 'R. Marx', 'Gymnodoris', 'sp.5 [Rudman]', 'gymnsp5','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'pl031.jpg', 'P. Laubscher', 'Halgerda', 'carlsoni', 'halgcarl','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'co012.jpg', 'C. Ogden', 'Halgerda', 'dalanghita', 'halgdala','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_8193.jpg', 'R. Marx', 'Halgerda', 'dichromis', 'halgdich','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'co013.jpg', 'C. Ogden', 'Halgerda', 'sp. 7 [Rudman]', 'halgsp7','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_7317.jpg', 'R. Marx', 'Halgerda', 'tessellata', 'halgtess','','4:1',' 45','Doriid','Black','Orange/Yellow on crests of ridges','white specs on the black patches between the ridges','','','Reticulated ridges','Yellow crests','None','Lamellate','Black clubs, translucent white/orange stalks with a black mid-line running down the posterior of each rhinophore','Feathers','Black on the top, white on the bottom','','','');
+addRow(data, 'DSCN5597.jpg', 'R. Marx', 'Halgerda', 'toliara', 'halgtoli','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_1885.jpg', 'R. Marx', 'Halgerda', 'wasinensis', 'halgwasi','','2:1',' 50','Doriid','Translucent-white','Orange on crests of ridges','Black patches between ridges','','','Reticulated ridges','','None','Lamellate','Black','Branched','Black on the top, white on the bottom','','','');
+addRow(data, 'pl024.jpg', 'P. Laubscher', 'Halgerda', 'willeyi', 'halgwill','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_3713.jpg', 'R. Marx', 'Hexabranchus', 'sanguineus', 'hexasang','spannish dancer,subadult','4:1',' 600','Doriid','Orange','','Irregular red-brown patches increasing to cover whole dorsum with age','','Undulated','Smooth','','','Lamellate','Red with white edged lamellae','Branched','Orange','"Hexa" = six, "branchus" = gills, "sunguineus" = blood-colored','','');
+addRow(data, 'IMG_4786.jpg', 'R. Marx', 'Hexabranchus', 'sanguineus', 'hexasang','spannish dancer,adult','4:1',' 600','Doriid','Orange','','Irregular red-brown patches increasing to cover whole dorsum with age','','Undulated','Smooth','','','Lamellate','Red with white edged lamellae','Branched','Orange','"Hexa" = six, "branchus" = gills, "sunguineus" = blood-colored','','');
+addRow(data, 'IMG_8561.jpg', 'R. Marx', 'Hexabranchus', 'sanguineus', 'hexasang','spannish dancer,juvenile','4:1',' 600','Doriid','Orange','','Irregular red-brown patches increasing to cover whole dorsum with age','','Undulated','Smooth','','','Lamellate','Red with white edged lamellae','Branched','Orange','"Hexa" = six, "branchus" = gills, "sunguineus" = blood-colored','','');
+addRow(data, 'pl011.jpg', 'P. Laubscher', 'Hypselodoris', 'bullockii', 'hypsbull2','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_5580-2.jpg', 'R. Marx', 'Hypselodoris', 'carnea', 'hypscarn','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_1599.jpg', 'R. Marx', 'Hypselodoris', 'carnea', 'hypscfca','juvenile','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_4826.jpg', 'R. Marx', 'Hypselodoris', 'fucata', 'hypsfuca','','6:1',' 50','Doriid','Translucent creamy-white','5 white longitudinal lines with interspaced orange broken lines between middle 3','elongated patches of orange','','Purple margin - may be broken, mantle gland concentrations on anterior edge of mantle may look like an orange margin','Smooth','','None','Lamellate','Orange','Feathers','Orange stems and white cilia','"fucata" = painted/misleadingly attractive','','');
+addRow(data, 'IMG_8207.jpg', 'R. Marx', 'Hypselodoris', 'infucata', 'hypsinfu','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_5726.jpg', 'R. Marx', 'Hypselodoris', 'maculosa', 'hypmacu','','8:1',' 30','Doriid','Milky orange-brown','4 white longitudinal lines','White and purple spots on anterior margin, foot and posterior margin. Purple spots on dorsum between the white lines','','Broad pink/purple margin arround anterior and posterior mantle margin, reddish brown margins laterally on mantle','Smooth','','None','Lamellate','White with orange/brown band and tip','Feathers','White with orange edges','"maculosa"=spotted/blotchy','','');
+addRow(data, 'co014.jpg', 'C. Ogden', 'Hypselodoris', 'maculosa (cf.)', 'hypscfma','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_7953.jpg', 'R. Marx', 'Hypselodoris', 'maridadilus', 'hypsmard','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_7066.jpg', 'R. Marx', 'Hypselodoris', 'nigrolineata', 'hypsnigrol','','4:1',' 35','Doriid','Creamy-white','Black irregular longitudinal','','','Purple/pink/blue sub-marginal band','Smooth','','None','Lamellate','Orange club, creamy-white stalk','Feathers','Orange at tip gradually turning translucent white towards base','"nigrolineata" = black lined','','');
+addRow(data, 'IMG_8203.jpg', 'R. Marx', 'Hypselodoris', 'nigrostriata', 'hypsnigs','','6:1',' 40','Doriid','Translucent-white','diagonal,criss-cross black','yellow patches between lines','','','Smooth','','None','Lamellate','Orange with white tip','Feathers','White edged in orange','"nigrostriata" = black streaks','','');
+addRow(data, 'IMG_8526.jpg', 'R. Marx', 'Hypselodoris', 'regina', 'hypsregi','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_8272.jpg', 'R. Marx', 'Hypselodoris', 'rudmani', 'hypsrudm','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'DSCN5630.jpg', 'R. Marx', 'Hypselodoris', 'sp.', 'hypsbull2','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'DSCN5589.jpg', 'R. Marx', 'Hypselodoris', 'sp.3 [Rudman]', 'hypssp3','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_7993.jpg', 'R. Marx', 'Madrella', 'ferruginosa', 'madrferr','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_4505.jpg', 'R. Marx', 'Mexichromis', 'mariei', 'meximari','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'DSCN4217.jpg', 'R. Marx', 'Mexichromis', 'multituberculata', 'meximult','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'co015.jpg', 'C. Ogden', 'Nembrotha', 'aurea', 'nembaure','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_7860-2.JPG', 'R. Marx', 'Nembrotha', 'lineolata', 'nemblin','(Juvenile), sp.5 [Gosliner et al.]','','','','','','','','','','','','','','','','','','');
+addRow(data, 'co016.jpg', 'C. Ogden', 'Nembrotha', 'sp.3 [Rudman]', 'nembsp3','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'co017.jpg', 'C. Ogden', 'Notodoris', 'sp.2 [Rudman]', 'notosp2','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_7114.jpg', 'R. Marx', 'Noumea', 'cf. sudanica', 'noumsuda','','6:1',' 20','Doriid','White','','Orange/red spots at bottom of pits','','Red outer margin gradually changing to yellow','Pitted','','None','Lamellate','White with red anterior-upper portion of lamellae','Cabbage','Translucent-white','"sudanica" = from Sudan','','');
+addRow(data, 'IMG_8171.jpg', 'R. Marx', 'Noumea', 'hongkongiensis', 'noumhong','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'DSCN5731.jpg', 'R. Marx', 'Noumea', 'sp.2 [Rudman]', 'noumsp2','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_5742.jpg', 'R. Marx', 'Noumea', 'varians', 'noumvari','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'co018.jpg', 'C. Ogden', 'Noumea', 'verconiforma', 'noumverc','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_9402.jpg', 'R. Marx', 'Odontoglaja', 'mosaica', 'odonguam','Odontoglaja guamensis','4:1',' 30','aglajids','Pale yellow/white','Reticulated, orange masaic pattern','A single yellow spot in the centre of every tile created by the lines. Small ornage spots covering an area just forward of the rear of mantle','','','Parapodia','','None','Not visible','','Internal','','"Odontoglaja" = toothed aglaja (others of family have no radular teeth), "mosaica" = mosaic-like pattern on body','','');
+addRow(data, 'IMG_7860.JPG', 'R. Marx', 'Okenia', 'brunneomaculata', 'okenbrun','','4:1',' 5','Aeoliid','translucent white','chocolate brown lines down sides','Chocolate brown','','','Papillae','elongated, white','Tentacles','Annulate','translucent white','','','"brunnea" = brown, "maculata" = spotted/stained','','');
+addRow(data, 'pl036.jpg', 'P. Laubscher', 'Okenia', 'cf. kendi', 'okenkend','','4:1',' 15','Aeoliid','Translucent yellow, white','','very fine pattern of brown','','','Lateral rows of cerata, increasing density of brown petterning moving to tips','','Long tentacles','Lamellate','brown patterning on front, very long','Branched','','','','');
+addRow(data, 'pl013.jpg', 'P. Laubscher', 'Okenia', 'nakamotoensis', 'hopknaka','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_7361.jpg', 'R. Marx', 'Paradoris', 'sp.1 [Rudman]', 'parasp1','','4:1',' 30','Doriid','translucent white','Black irregular streaks','closely spaced white spots','','','Smooth','','None','Lamellate','Black clubs with translucent white stalk','Cabbage','translucent white with black tips, small','','','');
+addRow(data, 'pl004.jpg', 'P. Laubscher', 'Phidiana', 'indica', 'phidindi','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_7390.jpg', 'R. Marx', 'Phyllidia', 'alyta', 'phylalyt','','4:1',' 50','Phylidiid','pink/blue-grey','4 longitudinal black lines','yellow','','','Cerata - Tuberculate','yellow tips','None','Simple','Yellow with blue-grey stalk/base','Under Mantel skirt','','','Black median line on sole, black line between rhinophore bases','');
+addRow(data, 'IMG_7100.jpg', 'R. Marx', 'Phyllidia', 'coelestis', 'phylcoel','','4:1',' 55','Phylidiid','blue-grey','3 longitudinal black lines','','','','Cerata - Tuberculate','yellow tips','None','Simple','Yellow with blue-grey stalk/base','Under Mantel skirt','','','','');
+addRow(data, 'IMG_8041.jpg', 'R. Marx', 'Phyllidia', 'exquisita', 'phylexqu','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'DSCN1912.jpg', 'R. Marx', 'Phyllidia', 'ocellata', 'phylocel','(ringed variation)','4:1',' 60','Phylidiid','Yellow','','','Black rings arround tubercules edged with white','','Cerata - Tuberculate','Yellow','None','Simple','Yellow','Under Mantel skirt','','"ocellata" = circle','','');
+addRow(data, 'IMG_7372.jpg', 'R. Marx', 'Phyllidia', 'ocellata', 'phylocel','(undulated variation)','4:1',' 60','Phylidiid','Yellow','','Undulating black patch forming a sub-marginal ring arround the dorsum with white edge','','','Cerata - Tuberculate','Yellow','None','Simple','Yellow','Under Mantel skirt','','"ocellata" = circle','','');
+addRow(data, 'IMG_7023.jpg', 'R. Marx', 'Phyllidia', 'varicosa', 'phylvari','','4:1',' 100','Phylidiid','Black','','Tubercule bases sometimes combine to form longitudinal blue-grey ridges','','','Cerata - Tuberculate','blue-grey bases, yellow tops. Tubercule bases sometimes combine to form longitudinal blue-grey ridges','None','Simple','Yellow','Under Mantel skirt','','"varicose" = swollen veins','','');
+addRow(data, 'IMG_9193.jpg', 'R. Marx', 'Phyllidiella', 'meandrina', 'phylmean','','4:1',' 55','Phylidiid','Black','','','','','Longitudinal and circular tuberculate Ridges','Pink','None','Simple','Black with pink base','Under Mantel skirt','','"meandrina" = meandering','','');
+addRow(data, 'IMG_7882.jpg', 'R. Marx', 'Phyllidiella', 'zeylanica', 'phylzeyl','','6:1',' 55','Phylidiid','Black','','','','','Longitudinal Ridges','Pink or green-turquise','None','Lamellate','Black with pink base','Under Mantel skirt','','','','');
+addRow(data, 'DSCN4258.jpg', 'R. Marx', 'Phyllidiopsis', 'cardinalis', 'phylcard','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_4615.jpg', 'R. Marx', 'Phyllidiopsis', 'striata', 'phylstri','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_5526-2.jpg', 'R. Marx', 'Phyllodesmium', 'magnum', 'phylmagn','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'pl002.jpg', 'P. Laubscher', 'Phyllodesmium', 'sp.', '','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_6954.jpg', 'R. Marx', 'Placida', 'cremoniana', 'stilcrem','','4:1',' 10','Aeoliid','yellow','','','','','Cerata - Conical','Black','Conical tentacles','Rolled','Black with white posterior midline','','','','','');
+addRow(data, 'pl017.jpg', 'P. Laubscher', 'Pleurolidia', 'juliae', '','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_6977.jpg', 'R. Marx', 'Pteraeolidia', 'ianthina', 'pteriant','Blue Dragon','+12:1',' 150','Aeoliid','translucent orange/white or even blueish','','opaque white patches on median line','','','Cerata - Elongated','grouped, sometimes curved. Bands of white, blue, purple or just brown','Long tentacles','Lamellate','Orange/yellow with purple tip, anterior midline is white','','','','purple bands on oral tentacles. Solar-powered slug','');
+addRow(data, 'co019.jpg', 'C. Ogden', 'Reticulidia', 'suzanneae', 'retisuza','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'DSCN5650.jpg', 'R. Marx', 'Risbecia', 'ghardaqana', 'risbghar','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_9933.jpg', 'R. Marx', 'Risbecia', 'pulchella', 'risbpulc','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_8341.jpg', 'R. Marx', 'Roboastra', 'gracilis', 'robograc','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_9414.jpg', 'R. Marx', 'Roboastra', 'luteolineata', 'robolute','','6:1',' 50','Nembrothids','Turquise-green','Yellow/orange longitudinal','milky green markings between the rhinophores','','','Longitudinal grooves','Yellow','Flattened tentacles','Simple','Turquise-green with blueish mid-line','Leaf','Light green main branch with dark green sub branches','"luteolineata" = yellow-coloured lines','','');
+addRow(data, 'pl035.jpg', 'P. Laubscher', 'Sagaminopteron', 'psychedelicum', 'sagapsyc','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'DSCN4305.jpg', 'R. Marx', 'Siphopteron', 'brunneomarginatum', 'siphbrun','','4:1',' 5','Other','Pale yellow','','','','Brown margin on parapodia','Parapodia','','None','','','','','','','');
+addRow(data, 'IMG_8035.jpg', 'R. Marx', 'Stiliger', 'aureomarginatus', 'stilaure','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'pl009.jpg', 'P. Laubscher', 'Tambja', 'affinis', 'tambaffi','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_1915.jpg', 'R. Marx', 'Tambja', 'morosa', 'tambmoro','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_8175.jpg', 'R. Marx', 'Taringa', 'caudata', 'taricaud','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'co020.jpg', 'C. Ogden', 'Thorunna', 'australis', 'thoraust','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_7290.jpg', 'R. Marx', 'Thorunna', 'horologia', 'thorhoro','','6:1',' 15','Doriid','White','','purple areas outside rhinophores, anterior edge of mantle','','Orange margin around mantle. transparent purple - ish edge on foot and anterior mantle edge','Smooth','','None','Lamellate','White with orange tip and edges','Feathers','White with orange edges','"horologia" = clock (hourglass figure of waist)','','');
+addRow(data, 'co021.jpg', 'C. Ogden', 'Thorunna', 'punicia', 'thorpuni','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'pl021.jpg', 'P. Laubscher', 'Thuridilla', 'indopacifica', 'thurindo','','8:1',' 30','Aeoliid','Translucent green','','scattered opaque white spots. Centrally placed Y-shaped opaque white patch on head with the arms extending up onto the rhinophores','','Thin brownish black edge, broad band of yellow or orange, and then a band of black which has extensions at regular interval. A bright blue band forms a fourth, broken band','Parapodia','','None','Rolled','bands of blue, black, orange-yellow and black','Dermal','','"indopacifica" = geographic area','','');
+addRow(data, 'co022.jpg', 'C. Ogden', 'Thuridilla', 'kathae', 'thurkath','','6:1',' 15','Aeoliid','Green/brown','','small white specs and larger white spots, each covering a low bumps. Y-shaped white patch on head. A green patch behind it, followed by another white patch','','Broad  cream to light yellow','Parapodia','','None','Rolled','The tips of the rhinophores are orange','Dermal','','','','');
+addRow(data, 'DSCN2014.jpg', 'R. Marx', 'Thuridilla', 'virgata', 'thurvirg','','6:1',' 30','Aeoliid','pale bluish white','broad black longitudinal bands.  Y-shaped bluish white band running along the medio-dorsal line, a branch going to each rhinophore','','','','Parapodia','','None','Rolled','Yello','Dermal','','','','');
+addRow(data, 'co023.jpg', 'C. Ogden', 'Trapania', 'euryeia', 'trapeury','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'co024.jpg', 'C. Ogden', 'Trapania', 'melaina', 'trapmela','sp.10 [Rudman]','4:1',' 15','Other','Black','','small white specs','','','2 Extrabranchial appendages and 2 extrarhinophoral appendages','Yellow','Tentacles','Lamellate','Black with yellow tips','Branched','Transparent','','','');
+addRow(data, 'pl020.jpg', 'P. Laubscher', 'Trapania', 'naeva', 'trapnaev','sp.1 [Rudman]','4:1',' 15','Other','White','','Big brown spots on body','','','2 Extrabranchial appendages and 2 extrarhinophoral appendages','Brown with white base','Tentacles','Lamellate','Brown club and stalk, white base','Branched','Brown on underside, white on top','','','');
+addRow(data, 'IMG_5731.jpg', 'R. Marx', 'Tritoniopsis', 'elegans', 'triteleg','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'IMG_7863.jpg', 'R. Marx', 'Unidentified', 'sp.1 [Riaan]', '','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'pl019.jpg', 'P. Laubscher', 'Unidentified', 'sp.2 [Riaan]', '','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'co025.jpg', 'C. Ogden', 'Volvatella', 'sp.1 [Rudman]', 'volvsp1','','','','','','','','','','','','','','','','','','','');
+addRow(data, 'pl037.jpg', 'P. Laubscher', 'Jorunna', 'funebris', 'jorufune','','4:1',' 55','Doriid','White','','black papilae','','','Papillae arranged in round blotches','Black papillae arranged in round blotches','None','Lamellate','Black club, translucent white stalk','Feathers','dark brown edges and centreline, translucent white interior with light shade of brown','"funebris" = death','','');
+ // End - populate list
+        }
+
+        var TemplateHTML;
+        function addTableLines() {
+            $.get('listrowtemplate.html', function (rowtemplatehtml)
+            {
+                // remember the row template
+                TemplateHTML = rowtemplatehtml;
+
+                $.get('tiletemplate.html', function (tiletemplatehtml)
+                {
+                    // replace the tile template tag with the tile template html
+                    TemplateHTML = TemplateHTML.replace(/<tiletemplate \/>/g, tiletemplatehtml);
+
+                    // add all the list rows
+                    addallrows(TemplateHTML);
+
+                    // initialize the table filter 
+                    var filtersConfig = {
+                        base_path: 'tablefilter/',
+                        btn_reset: true,
+                        rows_counter: true,
+                        loader: true,
+                        filters_row_index: 1,
+                        auto_filter: true,
+                        mark_active_columns: true,
+                        highlight_keywords: false,
+                        col_1: 'select',
+                        no_results_message: true,
+                        extensions: [{ name: 'sort' }]
+                    };
+
+                    var tf = new TableFilter(document.querySelector('#listtable'), filtersConfig);
+                    tf.init();
+
+                }, 'text');
+            }, 'text');           
+        }
+                
+    </script>
+    <div id="pagefooterdiv"></div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

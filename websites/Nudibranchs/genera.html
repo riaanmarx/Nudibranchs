@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Optistobranchs of Sodwana Bay</title>
+	<meta charset="utf-8" />
+    <link href="css/Site.css" rel="stylesheet" />
+    <script src="libs/jquery-3.1.1.min.js"></script>
+    <script src="js/site.js"></script>
+    <link href="css/featherlight.min.css" rel="stylesheet">
+    <script src="libs/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="libs/es6-promise.min.js"></script>
+    <script src="tablefilter/tablefilter.js"></script>
+    
+</head>
+<body onload="loaddata();">
+    <div id="pageheaderdiv"></div>
+    <div id="pagebodydiv">
+        Note: This list is still under contruction...
+        <table id="listtable" style="color: whitesmoke; background-color: rgba(64, 64, 64, 1);">
+            <thead>
+                <tr><th>Group/Genus</th><th>Typical Species</th><th>Description</th><th>Members</th></tr>
+            </thead>
+            <tbody id="generatable">
+                <!--genera rows to be added in here-->
+            </tbody>
+        </table>
+    </div>
+    <div id="pagefooterdiv"></div>
+    <script>
+        function loadrow(rowTemplate, groupname, genusname, specname, imgfile, photographer, specff, description,  members)
+        {
+            if (specff == '') {
+                rowTemplate = rowTemplate.replace(/<a href='http:\/\/www.seaslugforum.net\/showall\/<specff \/>' target='_blank'><genusname \/> <specname \/><\/a>/g, "<genusname /> <specname />");
+            }
+
+            rowHTML = rowTemplate
+                .replace(/<imgfilename \/>/g, imgfile)
+                .replace(/<photographer \/>/g, photographer)
+                .replace(/<specname \/>/g, specname)
+                .replace(/<genusname \/>/g, genusname)
+                .replace(/<specff \/>/g, specff)
+                .replace(/<groupname \/>/g, groupname)
+                .replace(/<members \/>/g, members)
+                .replace(/<description \/>/g, description);
+
+
+            $('#generatable').append(rowHTML);
+        }
+
+
+        function Addrows(rowTemplateHTML)
+        {
+            // Start - populate genera
+
+loadrow(rowTemplateHTML, 'Aegires', 'Aegires', 'lemoncello', 'IMG_8100.jpg', 'R. Marx', 'aegilemo', 'Categorized by the Aeoliid body form, covered in bulbous papillae.', 'Aegires');
+loadrow(rowTemplateHTML, 'Aldisa', 'Aldisa', 'sp.4 [Rudman]', 'IMG_7876.jpg', 'R. Marx', 'aldisp4', 'Disc-shaped body with network of ridges perfectly camouflaging it against its food sponge, and a collection of longitudinally aligned craters on the medial ridge of the dorsum. Gills are hidden under the mantle.', 'Aldisa');
+loadrow(rowTemplateHTML, 'Aphelodoris', 'Aphelodoris', 'sp.4 [Rudman]', 'IMG_9198.jpg', 'R. Marx', 'aphesp4', 'Small doriid group with short foot, and small gills posterior on mantle top. Rhinophores are lamulate.', 'Aphelodoris');
+loadrow(rowTemplateHTML, 'Aplysia', 'Aplysia', 'parvula', 'IMG_5760.jpg', 'R. Marx', 'aplyparv', 'Sea hares have categoristic body shape with parapodial folds,  rolled rhinophores and oral tentacles. Sizes range from 30mm to about 200mm. Can secrete purple substance in defence.', 'Aplysia');
+loadrow(rowTemplateHTML, 'Armina', 'Armina', 'sp.8 [Rudman]', 'IMG_5650-2.jpg', 'R. Marx', 'armisp8', 'Huge foot, elongated body and gills tucked under the mantle. Most have longitudinal lines.These species spend most of their time under sand, like moles, hunting for sea-pens.', 'Armina');
+loadrow(rowTemplateHTML, 'Bornella', 'Bornella', 'Anguilla', 'IMG_3879.jpg', 'R. Marx', 'bornangu', 'Large Aeoliid with padle-shaped cerata arranged in groups of 2 alligned laterally.', 'Bornella');
+loadrow(rowTemplateHTML, 'Bullina', 'Bullina', 'oblonga', 'pl015.jpg', 'P. Laubscher', 'bulloblo', 'Bubble-shells. ', 'Bullina');
+loadrow(rowTemplateHTML, 'Cadlina', 'Cadlina', 'ornatisima', 'pl012.jpg', 'P. Laubscher', 'cadlorna', 'Closely related to Aldisa. Although at one point synonimized with Chromodoridae, this genus was isolated again in 2011 after further research showed them to be a distinct group.', 'Cadlina');
+loadrow(rowTemplateHTML, 'Caloria', 'Caloria', 'sp.1 [Gosliner et al.]', 'DSCN2491.jpg', 'R. Marx', '', 'This genus consists of Aeoliids with annulate rhinophores, long oral tentacles and cerata organised in lateral groups along its body.', 'Caloria, Phidiana');
+loadrow(rowTemplateHTML, 'Ceratosoma', 'Ceratosoma', 'tenue', 'IMG_5585-2.jpg', 'R. Marx', 'ceratenu', 'Caracterized by the 2 lateral lobes (extensions) of the mantle and the up-curled posterior mantle end.', 'Ceratosoma');
+loadrow(rowTemplateHTML, 'Cerberilla', 'Cerberilla', 'africana', 'CO001.jpg', 'C. Ogden', 'cerbafri', 'Huge foot, extending far past the mantle on sides, elongated body and gills tucked under the mantle. These species spend most of their time under sand, like moles, hunting for anemonies.', 'Cerberilla');
+loadrow(rowTemplateHTML, 'Chelidonura', 'Chelidonura', 'punctata', 'DSCN4334.jpg', 'R. Marx', 'chelpunc', '"Headshield" slugs (cephalaspideans) in the Aglajidae family. They have two long tails, parapodia and eat flatworms.', 'Chelidonura');
+loadrow(rowTemplateHTML, 'Chromodoris', 'Chromodoris', 'africana', 'DSCN5210.jpg', 'R. Marx', 'chroafri', 'As the name suggests, this is a group of colourfull disc-shaped animals. Although elongated, not as much as Hypselodoris species. Gills close to the posterior of mantle. Most have marginal colour bands, smooth mantle and can retract their gills and rhinophores. Rhinophores are lamulate.', 'Chromodoris');
+loadrow(rowTemplateHTML, 'Colpodaspis', 'Colpodaspis', 'sp.', 'IMG_5510-2.jpg', 'R. Marx', '', 'Very small species, characterized by a very delicately/thinly covered shell. Rolled rhinophores.', 'Colpodaspis');
+loadrow(rowTemplateHTML, 'Cratena', 'Cratena', 'affinis', 'CO005.jpg', 'C. Ogden', 'cratcfaffi', 'A typical Aeoliid group with cerata in lateral groups of 6, long oral tentacles and annulate rhinophores.', 'Cratena');
+loadrow(rowTemplateHTML, 'Cuthona', 'Cuthona', 'sibogae', 'IMG_1562.jpg', 'R. Marx', 'cuthsp4', 'Some controversy exist around this genus, where the tipical species, C. sibogae was moved to a diferent genus, Trincesia. This is not recommended practice though. Typical Aeoliid body coverred in cerata. Long, simple rhinophores and oral tentacles.', 'Cuthona');
+loadrow(rowTemplateHTML, 'Dendrodoris', 'Dendrodoris', 'denisoni', 'DSCN5605.jpg', 'R. Marx', 'enddeni', 'Members of this genus has no "snout", oral tentacles or radular teeth like other dorids, they secrete digestive juices onto their prey sponge and then suck up the half-digested soup.', 'Dendrodoris');
+loadrow(rowTemplateHTML, 'Dermatobranchus', 'Dermatobranchus', 'ornatus', 'pl001.jpg', 'P. Laubscher', 'dermorna', 'Most species in this genus are white and very difficult to distinguish. Rhinophores have swolen tips with dark ragged vertical lines.', 'Dermatobranchus');
+loadrow(rowTemplateHTML, 'Diaphorodoris', 'Diaphorodoris', 'mitsuii', 'co006.jpg', 'C. Ogden', 'diapmits', 'This doriid genus have a very high mantel skirt with almost flat dorsum. Members are quite small on average with comparitively long lamulate rhinophores.', 'Diaphorodoris');
+loadrow(rowTemplateHTML, 'Diversidoris', 'Diversidoris', 'aurantionodulosa', 'IMG_3664.jpg', 'R. Marx', 'diveaura', 'detail required', 'Diversidoris');
+loadrow(rowTemplateHTML, 'Durvilledoris', 'Durvilledoris', 'pusilla', 'IMG_5843.jpg', 'R. Marx', 'durvpusi', 'detail required', 'Durvilledoris');
+loadrow(rowTemplateHTML, 'Elysia', 'Elysia', 'ornata', 'IMG_5696.jpg', 'R. Marx', 'elysorna', 'detail required', 'Elysia');
+loadrow(rowTemplateHTML, 'Elysiella', 'Elysiella', 'pusilla (cyl. form)', 'IMG_3856.jpg', 'R. Marx', 'elyspus2', 'detail required', 'Elysiella');
+loadrow(rowTemplateHTML, 'Favorinus', 'Favorinus', 'japonicus', 'co007.jpg', 'C. Ogden', 'favojap', 'detail required', 'Favorinus');
+loadrow(rowTemplateHTML, 'Fiona', 'Fiona', 'pinnata', 'co009.jpg', 'C. Ogden', 'fionpinn', 'detail required', 'Fiona');
+loadrow(rowTemplateHTML, 'Flabellina', 'Flabellina', 'bicolor', 'IMG_7298.jpg', 'R. Marx', 'flabbico', 'detail required', 'Flabellina');
+loadrow(rowTemplateHTML, 'Fryeria', 'Fryeria', 'marindica', 'IMG_7118.jpg', 'R. Marx', 'fryemari', 'detail required', 'Fryeria');
+loadrow(rowTemplateHTML, 'Glaucid', 'Glaucid', 'sp.1 [Rudman]', 'IMG_7387.jpg', 'R. Marx', 'valdaf6', 'detail required', 'Glaucid');
+loadrow(rowTemplateHTML, 'Glossodoris', 'Glossodoris', 'symmetricus', 'DSCN4234.jpg', 'R. Marx', 'glossymm', 'detail required', 'Glossodoris');
+loadrow(rowTemplateHTML, 'Goniobranchus', 'Goniobranchus', 'lekker', 'IMG_3638.jpg', 'R. Marx', 'chrolekk', 'detail required', 'Glossodoris');
+loadrow(rowTemplateHTML, 'Goniodoridella', 'Goniodoridella', 'savignyi', 'co011.jpg', 'C. Ogden', 'gonisavi', 'detail required', 'Goniodoridella');
+loadrow(rowTemplateHTML, 'Goniodoris', 'Goniodoris', 'albonares', 'IMG_9200.jpg', 'R. Marx', 'chralbo', 'detail required', 'Goniodoris');
+loadrow(rowTemplateHTML, 'Gymnodoris', 'Gymnodoris', 'aurita', 'IMG_7378.jpg', 'R. Marx', 'gymnauri', 'detail required', 'Gymnodoris');
+loadrow(rowTemplateHTML, 'Halgerda', 'Halgerda', 'wasinensis', 'IMG_1885.jpg', 'R. Marx', 'halgwasi', 'detail required', 'Halgerda');
+loadrow(rowTemplateHTML, 'Hexabranchus', 'Hexabranchus', 'sanguineus', 'IMG_3713.jpg', 'R. Marx', 'hexasang', 'detail required', 'Hexabranchus');
+loadrow(rowTemplateHTML, 'Hypselodoris', 'Hypselodoris', 'fucata', 'IMG_4826.jpg', 'R. Marx', 'hypsfuca', 'detail required', 'Hypselodoris');
+loadrow(rowTemplateHTML, 'Madrella', 'Madrella', 'ferruginosa', 'IMG_7993.jpg', 'R. Marx', 'madrferr', 'detail required', 'Madrella');
+loadrow(rowTemplateHTML, 'Mexichromis', 'Mexichromis', 'multituberculata', 'DSCN4217.jpg', 'R. Marx', 'meximult', 'detail required', 'Mexichromis');
+loadrow(rowTemplateHTML, 'Nembrotha', 'Nembrotha', 'lineolata', 'IMG_7860-2.JPG', 'R. Marx', 'nemblin', 'detail required', 'Nembrotha');
+loadrow(rowTemplateHTML, 'Notodoris', 'Notodoris', 'sp.2 [Rudman]', 'co017.jpg', 'C. Ogden', 'notosp2', 'detail required', 'Notodoris');
+loadrow(rowTemplateHTML, 'Noumea', 'Noumea', 'varians', 'IMG_5742.jpg', 'R. Marx', 'noumvari', 'detail required', 'Noumea');
+loadrow(rowTemplateHTML, 'Odontoglaja', 'Odontoglaja', 'mosaica', 'IMG_9402.jpg', 'R. Marx', 'odonguam', 'detail required', 'Odontoglaja');
+loadrow(rowTemplateHTML, 'Okenia', 'Okenia', 'brunneomaculata', 'IMG_7860.JPG', 'R. Marx', 'okenbrun', 'detail required', 'Okenia');
+loadrow(rowTemplateHTML, 'Paradoris', 'Paradoris', 'sp.1 [Rudman]', 'IMG_7361.jpg', 'R. Marx', 'parasp1', 'detail required', 'Paradoris');
+loadrow(rowTemplateHTML, 'Phidiana', 'Phidiana', 'indica', 'pl004.jpg', 'P. Laubscher', 'phidindi', 'detail required', 'Phidiana');
+loadrow(rowTemplateHTML, 'Phyllidia', 'Phyllidia', 'varicosa', 'IMG_7023.jpg', 'R. Marx', 'phylvari', 'Disk shaped or slightly elongated body with mantel covering foot. Gills under the mantle. Mantle is usually textured with pustules or tubercles', 'Phyllidia, Phyllidiela, Phyllidiopsis');
+loadrow(rowTemplateHTML, 'Phyllidiella', 'Phyllidiella', 'zeylanica', 'IMG_7882.jpg', 'R. Marx', 'phylzeyl', 'Able to change between pink and green. Textured with pustules/tubercles. Elongated body with gills under the mantle edge.', 'Phyllidia, Phyllidiela, Phyllidiopsis');
+loadrow(rowTemplateHTML, 'Phyllidiopsis', 'Phyllidiopsis', 'cardinalis', 'DSCN4258.jpg', 'R. Marx', 'phylcard', 'detail required', 'Phyllidia, Phyllidiela, Phyllidiopsis');
+loadrow(rowTemplateHTML, 'Phyllodesmium', 'Phyllodesmium', 'magnum', 'IMG_5526-2.jpg', 'R. Marx', 'phylmagn', 'detail required', 'Phyllodesmium');
+loadrow(rowTemplateHTML, 'Placida', 'Placida', 'cremoniana', 'IMG_6954.jpg', 'R. Marx', 'stilcrem', 'detail required', 'Placida');
+loadrow(rowTemplateHTML, 'Pleurobranchus', 'Pleurobranchus', 'peroni', 'blank.jpg', '', 'pleupero', 'detail required', 'Pleurobranchus');
+loadrow(rowTemplateHTML, 'Pleurolidia', 'Pleurolidia', 'juliae', 'pl017.jpg', 'P. Laubscher', '', 'detail required', 'Pleurolidia');
+loadrow(rowTemplateHTML, 'Pteraeolidia', 'Pteraeolidia', 'ianthina', 'IMG_6977.jpg', 'R. Marx', 'pteriant', 'detail required', 'Pteraeolidia');
+loadrow(rowTemplateHTML, 'Reticulidia', 'Reticulidia', 'suzanneae', 'co019.jpg', 'C. Ogden', 'retisuza', 'detail required', 'Reticulidia');
+loadrow(rowTemplateHTML, 'Risbecia', 'Risbecia', 'pulchella', 'IMG_9933.jpg', 'R. Marx', 'risbpulc', 'detail required', 'Risbecia');
+loadrow(rowTemplateHTML, 'Roboastra', 'Roboastra', 'gracilis', 'IMG_8341.jpg', 'R. Marx', 'robograc', 'detail required', 'Roboastra');
+loadrow(rowTemplateHTML, 'Siphopteron', 'Siphopteron', 'brunneomarginatum', 'DSCN4305.jpg', 'R. Marx', 'siphbrun', 'detail required', 'Siphopteron');
+loadrow(rowTemplateHTML, 'Stiliger', 'Stiliger', 'aureomarginatus', 'IMG_8035.jpg', 'R. Marx', 'stilaure', 'detail required', 'Stiliger');
+loadrow(rowTemplateHTML, 'Tambja', 'Tambja', 'morosa', 'IMG_1915.jpg', 'R. Marx', 'tambmoro', 'detail required', 'Tambja');
+loadrow(rowTemplateHTML, 'Taringa', 'Taringa', 'caudata', 'IMG_8175.jpg', 'R. Marx', 'taricaud', 'detail required', 'Taringa');
+loadrow(rowTemplateHTML, 'Thorunna', 'Thorunna', 'horologia', 'IMG_7290.jpg', 'R. Marx', 'thorhoro', 'detail required', 'Thorunna');
+loadrow(rowTemplateHTML, 'Thuridilla', 'Thuridilla', 'indopacifica', 'pl021.jpg', 'P. Laubscher', 'thurindo', 'detail required', 'Thuridilla');
+loadrow(rowTemplateHTML, 'Trapania', 'Trapania', 'melaina', 'co024.jpg', 'C. Ogden', 'trapmela', 'detail required', 'Trapania');
+loadrow(rowTemplateHTML, 'Tritoniopsis', 'Tritoniopsis', 'elegans', 'IMG_5731.jpg', 'R. Marx', 'triteleg', 'detail required', 'Tritoniopsis');
+loadrow(rowTemplateHTML, 'Umbraculum', 'Umbraculum', 'umbraculum', 'blank.jpg', '', 'umbrumbr', 'detail required', 'Umbraculum');
+loadrow(rowTemplateHTML, 'Volvatella', 'Volvatella', 'sp.1 [Rudman]', 'co025.jpg', 'C. Ogden', 'volvsp1', 'detail required', 'Volvatella');
+ // End - populate genera
+        }
+        
+
+        function loaddata()
+        {
+            $.ajaxSetup({
+                // Disable caching of AJAX responses
+                cache: false
+            });
+
+            $.get('tiletemplate.html', function (tiletemplatehtml) {
+                // replace the tile template tag with the tile template html
+                rowTemplateHTML = '<tr><td class="genera"><groupname /></td><td><tiletemplate /></td><td><description /></td><td><members /></td></tr>';
+                rowTemplateHTML = rowTemplateHTML.replace(/<tiletemplate \/>/g, tiletemplatehtml);
+
+                Addrows(rowTemplateHTML);
+
+                InjectGlossaryHyperlinks(function () {
+
+                    // initialize the table filter
+                    var filtersConfig = {
+                        base_path: 'tablefilter/',
+                        btn_reset: true,
+                        rows_counter: true,
+                        loader: true,
+                        filters_row_index: 1,
+                        auto_filter: true,
+                        mark_active_columns: true,
+                        highlight_keywords: false,
+                        col_0: 'select',
+                        no_results_message: true,
+                        extensions: [{ name: 'sort' }]
+                    };
+
+                    var tf = new TableFilter(document.querySelector('#listtable'), filtersConfig);
+                    tf.init();
+
+                });
+
+                
+
+            }, 'text');   
+            
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

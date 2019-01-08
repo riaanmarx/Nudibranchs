@@ -1,0 +1,267 @@
+﻿body {
+    font-family: sans-serif;
+}
+
+#pageheaderdiv {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: auto;
+    width: 100%;
+    background-color: black;
+        /*rgba(31, 31, 31, 1);*/
+    z-index: 10;
+    text-align: center;
+}
+
+.heading {
+    font-size: 2em;
+    font-weight: 500;
+    color: whitesmoke;
+    display: block;
+    margin-top:8px;
+}
+.slogan {
+    font-size: 1em;
+    color: whitesmoke;
+    display: block;
+    margin-bottom: 27px;
+}
+
+.menu {
+    margin-bottom:1px;
+    display:inline-block;
+}
+
+.menu a {
+    text-decoration: none;
+    color: gold;
+    font-weight: 600;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.selectedmenu {
+    background-color: rgba(204, 204, 204, 1);
+    color: rgba(0, 0, 0, 1) !important;
+}
+
+#gridpagebody {
+    background-color: black;
+    /*rgba(51, 51, 51, 1);*/
+}
+
+
+#pagebodydiv {
+    margin: 0 auto;
+}
+
+.bannerImgLeft {
+    position: absolute;
+    left: 0px;
+    top:0px;
+    max-height:100px;
+    margin:5px;
+}
+.footerLeft {
+    position: absolute;
+    margin: 5px;
+    font-size: x-small;
+    left: 0px;
+}
+
+
+.bannerImgRight {
+    position: absolute;
+    right:0px;
+    top:0px;
+    max-height: 100px;
+    margin: 5px;
+}
+.footerRight {
+    position: absolute;
+    right: 0px;
+    margin: 5px;
+    font-size: x-small;
+}
+
+
+.info {
+    padding-left: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    z-index: 2;
+    position: relative;
+    bottom: 38px;
+    width: 190px;
+    height: 29px;
+    background-color: rgba(44, 43, 43, 0.58);
+}
+
+
+.info a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-family: "Arial";
+}
+
+.info span {
+    float: left;
+    color: whitesmoke;
+}
+
+.item {
+    height: 150px;
+    width: 200px;
+    background: white;
+    margin: 5px;
+    float: left;
+    z-index:5;
+}
+
+.photo {
+    height: 150px;
+    width: 200px;
+    /*position: absolute;*/
+    z-index: 1;
+}
+
+
+
+#pagebodydiv{ 
+    margin-top: 120px;  
+    margin-bottom:40px
+}
+#Termstable a {
+    padding-top: 110px;
+}
+
+#pagefooterdiv {
+    left: 0px;
+    top: 100%;
+    width: 100%;
+    height: 25px;
+    position: fixed;
+    margin-top: -25px;
+    background-color:black;
+    /*rgba(51, 51, 51, 1);*/
+    display: block;
+    text-align: center;
+    z-index: 10;
+    color: whitesmoke;
+    padding-top: 3px;
+    vertical-align: bottom;
+}
+
+#pagefooterdiv a{
+    text-decoration: none;
+    color: gold;
+    margin-left:3px;
+    margin-right:3px;
+    font-weight:600;
+}
+
+.head1{
+    font-weight:bold;
+}
+.copyrightdiv
+{
+    width:100%;
+    text-align:right;
+    font-size:x-small;
+    margin-right:15px;
+}
+.specname {
+    font-style: italic;
+    font-size: small;
+    bottom: 3px;
+    left: 0px;
+    position: absolute;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+.profileimg {
+    max-height: 100px;
+}
+@media only screen and (max-width: 815px) {
+    #proxy {
+        height: 140px;
+        background: white;
+        margin: 0 auto 10px;
+        text-align: center;
+    }
+
+    .bannerImgLeft {
+        position: relative;
+        float: left;
+        height: 80px;
+    }
+
+    .bannerImgRight {
+        position: relative;
+        float: right;
+        height: 70px;
+    }
+
+    .heading {
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .slogan {
+        font-size: 10px;
+    }
+    
+}
+
+@media only screen and (max-width: 950px) {
+    #proxy {
+        height: 30px;
+        background: white;
+        margin: 0 auto 10px;
+        text-align: center;
+    }
+
+    .bannerImgLeft {
+       display: none;
+    }
+
+    .bannerImgRight {
+        display: none;
+    }
+
+    .heading {
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .slogan {
+        font-size: 10px;
+    }
+}
+.lightbox{
+    display:none;
+}
+.even {
+    background-color: rgba(87, 87, 87, 1);
+}
+.odd {
+    background-color: rgba(107, 107, 107, 1);
+}
+
+/* tablefilter.css (19, 9) */
+div.tot {
+    color: black;
+}
+.hotword {
+    text-decoration: none;
+    /*font-style:italic;*/
+    color:burlywood;
+}
+.abouttableheading{
+    font-weight:bold;
+}
+#Termstable tr{
+    vertical-align:top;
+}
