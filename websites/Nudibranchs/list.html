@@ -34,6 +34,7 @@
                     <th class="headertd">Gills</th>
                     <th class="headertd">Name</th>
                     <th class="headertd">Other</th>
+                    <th class="headertd">Food</th>
                 </tr>
             </thead>
             <tbody id="tablebody">
@@ -44,7 +45,7 @@
     
     <script>
 
-        function addSpec(template, imgfile, photographer, genusname, specname, specff,aliases,l_w_ratio,maxlen,bodytype,backcolor,lines,patches,rings,margins,dorsalapp,ceratadetail,oralapp,rhinophoreshape,rhinophoredetail,gillshape,gills,name,other,dummy) {
+        function addSpec(template, imgfile, photographer, genusname, specname, specff,aliases,l_w_ratio,maxlen,bodytype,backcolor,lines,patches,rings,margins,dorsalapp,ceratadetail,oralapp,rhinophoreshape,rhinophoredetail,gillshape,gills,name,other,food,dummy) {
             //if the factfile is not specified, remove the hyperlink
             if (specff == '') {
                 template = template.replace(/<a href='http:\/\/www.seaslugforum.net\/showall\/<specff \/>' target='_blank'><genusname \/> <specname \/><\/a>/g, "<genusname /> <specname />");
@@ -74,7 +75,8 @@
                 .replace(/<gillshape \/>/g, gillshape)
                 .replace(/<gills \/>/g, gills)
                 .replace(/<name \/>/g, name)
-                .replace(/<other \/>/g, other);
+                .replace(/<other \/>/g, other)
+                .replace(/<food \/>/g, food);
 
             // append row to table
             $("#tablebody").append(template);
