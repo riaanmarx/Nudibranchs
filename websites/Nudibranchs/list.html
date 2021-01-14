@@ -22,6 +22,10 @@
             <thead>
                 <tr class="tableheader">
                     <th class="headertd">Photo, Species &amp; Photographer</th>
+                    <th class="headertd">Order</th>
+                    <th class="headertd">SubOrder</th>
+                    <th class="headertd">SuperFamily</th>
+                    <th class="headertd">Family</th>
                     <th class="headertd">Body Type</th>
                     <th class="headertd">Background Color</th>
                     <th class="headertd">Lines</th>
@@ -45,7 +49,7 @@
     
     <script>
 
-        function addSpec(template, imgfile, photographer, genusname, specname, specff,aliases,l_w_ratio,maxlen,bodytype,backcolor,lines,patches,rings,margins,dorsalapp,ceratadetail,oralapp,rhinophoreshape,rhinophoredetail,gillshape,gills,name,other,food,dummy) {
+        function addSpec(template, imgfile, photographer, genusname, specname, specff, aliases, l_w_ratio, maxlen, bodytype, backcolor, lines, patches, rings, margins, dorsalapp, ceratadetail, oralapp, rhinophoreshape, rhinophoredetail, gillshape, gills, name, other, food, order, suborder, superfamily, family,dummy) {
             //if the factfile is not specified, remove the hyperlink
             if (specff == '') {
                 template = template.replace(/<a href='http:\/\/www.seaslugforum.net\/showall\/<specff \/>' target='_blank'><genusname \/> <specname \/><\/a>/g, "<genusname /> <specname />");
@@ -55,8 +59,12 @@
             template = template
                 .replace(/<imgfilename \/>/g, imgfile)
                 .replace(/<photographer \/>/g, photographer)
-                .replace(/<specname \/>/g, specname)
+                .replace(/<order \/>/g, order)
+                .replace(/<suborder \/>/g, suborder)
+                .replace(/<superfamily \/>/g, superfamily)
+                .replace(/<family \/>/g, family)
                 .replace(/<genusname \/>/g, genusname)
+                .replace(/<specname \/>/g, specname)
                 .replace(/<l_w_ratio \/>/g, l_w_ratio)
                 .replace(/<maxlen \/>/g, maxlen)
                 .replace(/<aliases \/>/g, aliases)
@@ -108,6 +116,10 @@
                         mark_active_columns: true,
                         highlight_keywords: false,
                         col_1: 'select',
+                        col_2: 'select',
+                        col_3: 'select',
+                        col_4: 'select',
+                        col_5: 'select',
                         no_results_message: true,
                         extensions: [{ name: 'sort' }]
                     };
