@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Nudibranchs", "http://localhost/Nudibranchs", "{C8C0AAC2-71C8-4A15-B453-F13D70D983E7}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Nudibranchs", "http://localhost:5066/Nudibranchs", "{C8C0AAC2-71C8-4A15-B453-F13D70D983E7}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "false"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
@@ -21,6 +21,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Nudibranchs", "http://local
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "5066"
 		SlnRelativePath = "websites\Nudibranchs\"
 	EndProjectSection
 EndProject
