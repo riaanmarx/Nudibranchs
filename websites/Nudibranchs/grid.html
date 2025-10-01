@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Optistobranchs of Sodwana Bay</title>
+    <title>Heterobranchs of Sodwana Bay</title>
     <meta charset="utf-8" />
     <link href="css/Site.css" rel="stylesheet" />
     <link href="css/featherlight.min.css" rel="stylesheet">
@@ -20,16 +20,16 @@
             this.emitEvent('layout', [this]);
         };
 
-        function addSpec(template, imgfile, photographer, genusname, specname, specff, aliases, l_w_ratio, maxlen, bodytype, backcolor, lines, patches, rings, margins, dorsalapp, ceratadetail, oralapp, rhinophoreshape, rhinophoredetail, gillshape, gills, name, other,food,order,suborder,superfamily,family, dummy) {
-            if (specff == '') {
+        function addSpec(template, spec) {
+            if (spec.ssfpage == '') {
                 template = template.replace(/<a href='http:\/\/www.seaslugforum.net\/showall\/<specff \/>' target='_blank'><genusname \/> <specname \/><\/a>/g, "<genusname /> <specname />");
             }
             template = template
-                .replace(/<imgfilename \/>/g, imgfile)
-                .replace(/<photographer \/>/g, photographer)
-                .replace(/<genusname \/>/g, genusname)
-                .replace(/<specname \/>/g, specname)
-                .replace(/<specff \/>/g, specff);
+                .replace(/<imgfilename \/>/g, spec.photo)
+                .replace(/<photographer \/>/g, spec.photographer)
+                .replace(/<genusname \/>/g, spec.genus)
+                .replace(/<specname \/>/g, spec.species)
+                .replace(/<specff \/>/g, spec.ssfpage);
 
             $("#gridcontainer").append(template);
         }
@@ -70,7 +70,6 @@
 <body id="gridpagebody" onload="onload();" oncontextmenu="return false;">
     <div id="pageheaderdiv"></div>
     <div id="pagebodydiv" style="color:silver">
-        Note: This is a living website and will be updated as information is added and time permits.<br />
         <div id="gridcontainer"></div>
     </div>
     <div id="pagefooterdiv"></div>

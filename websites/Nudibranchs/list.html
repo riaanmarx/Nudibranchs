@@ -23,8 +23,6 @@
                 <tr class="tableheader">
                     <th class="headertd">Photo, Species &amp; Photographer</th>
                     <th class="headertd">Order</th>
-                    <th class="headertd">SubOrder</th>
-                    <th class="headertd">SuperFamily</th>
                     <th class="headertd">Family</th>
                     <th class="headertd">Body Type</th>
                     <th class="headertd">Background Color</th>
@@ -49,43 +47,40 @@
     
     <script>
 
-        function addSpec(template, imgfile, photographer, genusname, specname, specff, aliases, l_w_ratio, maxlen, bodytype, backcolor, lines, patches, rings, margins, dorsalapp, ceratadetail, oralapp, rhinophoreshape, rhinophoredetail, gillshape, gills, name, other, food, order, suborder, superfamily, family,dummy) {
+        function addSpec(template, spec) {
             //if the factfile is not specified, remove the hyperlink
-            if (specff == '') {
+            if (spec.ssfpage == '') {
                 template = template.replace(/<a href='http:\/\/www.seaslugforum.net\/showall\/<specff \/>' target='_blank'><genusname \/> <specname \/><\/a>/g, "<genusname /> <specname />");
             }
             
             // replace placeholder tags
             template = template
-                .replace(/<imgfilename \/>/g, imgfile)
-                .replace(/<photographer \/>/g, photographer)
-                .replace(/<order \/>/g, order)
-                .replace(/<suborder \/>/g, suborder)
-                .replace(/<superfamily \/>/g, superfamily)
-                .replace(/<family \/>/g, family)
-                .replace(/<genusname \/>/g, genusname)
-                .replace(/<specname \/>/g, specname)
-                .replace(/<l_w_ratio \/>/g, l_w_ratio)
-                .replace(/<maxlen \/>/g, maxlen)
-                .replace(/<aliases \/>/g, aliases)
-                .replace(/<specff \/>/g, specff)
-                .replace(/<bodytype \/>/g, bodytype)
-                .replace(/<backcolor \/>/g, backcolor)
-                .replace(/<lines \/>/g, lines)
-                .replace(/<patches \/>/g, patches)
-                .replace(/<rings \/>/g, rings)
-                .replace(/<margins \/>/g, margins)
-                .replace(/<dorsalapp \/>/g, dorsalapp)
-                .replace(/<ceratadetail \/>/g, ceratadetail)
-                .replace(/<oralapp \/>/g, oralapp)
-                .replace(/<rhinophoreshape \/>/g, rhinophoreshape)
-                .replace(/<rhinophoredetail \/>/g, rhinophoredetail)
-                .replace(/<gillshape \/>/g, gillshape)
-                .replace(/<gills \/>/g, gills)
-                .replace(/<name \/>/g, name)
-                .replace(/<other \/>/g, other)
-                .replace(/<food \/>/g, food);
-
+                .replace(/<imgfilename \/>/g, spec.photo)
+                .replace(/<photographer \/>/g, spec.photographer)
+                .replace(/<order \/>/g, spec.order)
+                .replace(/<family \/>/g, spec.family)
+                .replace(/<genusname \/>/g, spec.genus)
+                .replace(/<specname \/>/g, spec.species)
+                .replace(/<l_w_ratio \/>/g, spec.sizeratio)
+                .replace(/<maxlen \/>/g, spec.size)
+                .replace(/<aliases \/>/g, spec.aliases)
+                .replace(/<specff \/>/g, spec.ssfpage)
+                .replace(/<bodytype \/>/g, spec.bodytype)
+                .replace(/<backcolor \/>/g, spec.backgroundcolor)
+                .replace(/<lines \/>/g, spec.lines)
+                .replace(/<patches \/>/g, spec.spots)
+                .replace(/<rings \/>/g, spec.rings)
+                .replace(/<margins \/>/g, spec.margins)
+                .replace(/<dorsalapp \/>/g, spec.dorsalstruc)
+                .replace(/<ceratadetail \/>/g, spec.dorsalstrucdetail)
+                .replace(/<oralapp \/>/g, spec.oralapp)
+                .replace(/<rhinophoreshape \/>/g, spec.rhinophoreshape)
+                .replace(/<rhinophoredetail \/>/g, spec.rhinophoredetail)
+                .replace(/<gillshape \/>/g, spec.gillshape)
+                .replace(/<gills \/>/g, spec.gills)
+                .replace(/<name \/>/g, spec.nameinfo)
+                .replace(/<other \/>/g, spec.otherinfo)
+                .replace(/<food \/>/g, spec.food);
             // append row to table
             $("#tablebody").append(template);
         }
