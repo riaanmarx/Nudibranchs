@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Optistobranchs of Sodwana Bay</title>
+    <title>Opisthobranchs of Sodwana Bay</title>
     <meta charset="utf-8" />
     <link href="css/Site.css" rel="stylesheet" />
     <script src="libs/jquery-3.1.1.min.js"></script>
@@ -63,6 +63,9 @@
                 .replace(/<specname \/>/g, spec.species)
                 .replace(/<l_w_ratio \/>/g, spec.sizeratio)
                 .replace(/<maxlen \/>/g, spec.size)
+                .replace(/<size \/>/g, spec.size)
+                .replace(/<habitat \/>/g, spec.habitat)
+                .replace(/<depth \/>/g, spec.depthrange)
                 .replace(/<aliases \/>/g, spec.aliases)
                 .replace(/<specff \/>/g, spec.ssfpage)
                 .replace(/<bodytype \/>/g, spec.bodytype)

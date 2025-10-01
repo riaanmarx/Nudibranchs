@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Heterobranchs of Sodwana Bay</title>
+    <title>Opisthobranchs of Sodwana Bay</title>
     <meta charset="utf-8" />
     <link href="css/Site.css" rel="stylesheet" />
     <link href="css/featherlight.min.css" rel="stylesheet">
@@ -29,7 +29,12 @@
                 .replace(/<photographer \/>/g, spec.photographer)
                 .replace(/<genusname \/>/g, spec.genus)
                 .replace(/<specname \/>/g, spec.species)
-                .replace(/<specff \/>/g, spec.ssfpage);
+                .replace(/<specff \/>/g, spec.ssfpage)
+                .replace(/<desc \/>/g, spec.description)
+                .replace(/<habitat \/>/g, spec.habitat)
+                .replace(/<food \/>/g, spec.food)
+                .replace(/<depth \/>/g, spec.depthrange)
+                .replace(/<size \/>/g, spec.size);
 
             $("#gridcontainer").append(template);
         }
