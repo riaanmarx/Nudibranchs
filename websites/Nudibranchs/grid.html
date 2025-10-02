@@ -45,7 +45,13 @@
                 // Disable caching of AJAX responses
                 cache: false
             });
-            $.get('tiletemplate.html', function (data) {
+            const urlParams = new URLSearchParams(window.location.search);
+            var templatefile = 'tiletemplate.html';
+            if (urlParams.has('RM') || urlParams.has('rm')) {
+                templatefile = 'tiletemplaterm.html';
+            }
+            
+            $.get(templatefile, function (data) {
 
                 addSpecies(data);
 
