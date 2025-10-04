@@ -21,8 +21,8 @@
         };
 
         function addSpec(template, spec) {
-            if (spec.ssfpage == '') {
-                template = template.replace(/<a href='http:\/\/www.seaslugforum.net\/showall\/<specff \/>' target='_blank'><genusname \/> <specname \/><\/a>/g, "<genusname /> <specname />");
+            if (spec.wormsid != '') {
+                template = template.replace(/<genusname \/> <specname \/>/g, "<a href='https://www.marinespecies.org/aphia.php?p=taxdetails&id=<wormsid />' target='_blank'><genusname /> <specname /></a>");
             }
             template = template
                 .replace(/<imgfilename \/>/g, spec.photo)
@@ -34,6 +34,9 @@
                 .replace(/<habitat \/>/g, spec.habitat)
                 .replace(/<food \/>/g, spec.food)
                 .replace(/<depth \/>/g, spec.depthrange)
+                .replace(/<wormsid \/>/g, spec.wormsid)
+                .replace(/<described \/>/g, spec.described)
+                .replace(/<ratio \/>/g, spec.sizeratio)
                 .replace(/<size \/>/g, spec.size);
 
             $("#gridcontainer").append(template);

@@ -48,11 +48,9 @@
     <script>
 
         function addSpec(template, spec) {
-            //if the factfile is not specified, remove the hyperlink
-            if (spec.ssfpage == '') {
-                template = template.replace(/<a href='http:\/\/www.seaslugforum.net\/showall\/<specff \/>' target='_blank'><genusname \/> <specname \/><\/a>/g, "<genusname /> <specname />");
+            if (spec.wormsid != '') {
+                template = template.replace(/<genusname \/> <specname \/>/g, "<a href='https://www.marinespecies.org/aphia.php?p=taxdetails&id=<wormsid />' target='_blank'><genusname /> <specname /></a>");
             }
-            
             // replace placeholder tags
             template = template
                 .replace(/<imgfilename \/>/g, spec.photo)
@@ -83,6 +81,7 @@
                 .replace(/<gills \/>/g, spec.gills)
                 .replace(/<name \/>/g, spec.nameinfo)
                 .replace(/<other \/>/g, spec.otherinfo)
+                .replace(/<wormsid \/>/g, spec.wormsid)
                 .replace(/<food \/>/g, spec.food);
             // append row to table
             $("#tablebody").append(template);
