@@ -54,12 +54,15 @@
             });
             const urlParams = new URLSearchParams(window.location.search);
             var templatefile = 'tiletemplate.html';
+
             if (urlParams.has('RM') || urlParams.has('rm')) {
                 templatefile = 'tiletemplaterm.html';
             }
-            
-            $.get(templatefile, function (data) {
 
+            //$.get('fstemplate.html', function (pu_template) {
+            //}, 'text');
+
+            $.get(templatefile, function (data) {
                 addSpecies(data);
 
                 var $container = $('#gridcontainer').masonry({
