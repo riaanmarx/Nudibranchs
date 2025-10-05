@@ -17,7 +17,6 @@
     <div id="pageheaderdiv"></div>
 
     <div id="pagebodydiv">
-        Note: This list is a working document and will be updated as new information is added to the site database.<br />
         <table id="listtable" style="color: whitesmoke; background-color: rgba(64, 64, 64, 1);">
             <thead>
                 <tr class="tableheader">
@@ -51,6 +50,11 @@
             if (spec.wormsid != '') {
                 template = template.replace(/<genusname \/> <specname \/>/g, "<a href='https://www.marinespecies.org/aphia.php?p=taxdetails&id=<wormsid />' target='_blank'><genusname /> <specname /></a>");
             }
+            if (spec.reviewed != 'Y') {
+                template = template
+                    .replace(/<genusname \/>/g, "*<genusname />")
+            }
+
             // replace placeholder tags
             template = template
                 .replace(/<imgfilename \/>/g, spec.photo)
@@ -118,6 +122,8 @@
                         col_4: 'select',
                         col_5: 'select',
                         no_results_message: true,
+                        sticsticky_headers: true,
+                        alternate_rows: true,
                         extensions: [{ name: 'sort' }]
                     };
 
