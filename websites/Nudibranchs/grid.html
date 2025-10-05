@@ -24,6 +24,10 @@
             if (spec.wormsid != '') {
                 template = template.replace(/<genusname \/> <specname \/>/g, "<a href='https://www.marinespecies.org/aphia.php?p=taxdetails&id=<wormsid />' target='_blank'><genusname /> <specname /></a>");
             }
+            if (spec.reviewed != 'Y') {
+                template = template
+                    .replace(/<genusname \/>/g, "*<genusname />")
+            }
             template = template
                 .replace(/<imgfilename \/>/g, spec.photo)
                 .replace(/<photographer \/>/g, spec.photographer)
