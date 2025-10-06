@@ -86,6 +86,7 @@
                 .replace(/<name \/>/g, spec.nameinfo)
                 .replace(/<other \/>/g, spec.otherinfo)
                 .replace(/<wormsid \/>/g, spec.wormsid)
+                .replace(/<desc \/>/g, spec.description)
                 .replace(/<food \/>/g, spec.food);
             // append row to table
             $("#tablebody").append(template);
@@ -98,38 +99,47 @@
                 // remember the row template
                 TemplateHTML = rowtemplatehtml;
 
-                $.get('tiletemplate.html', function (tiletemplatehtml)
-                {
-                    // replace the tile template tag with the tile template html
-                    TemplateHTML = TemplateHTML.replace(/<tiletemplate \/>/g, tiletemplatehtml);
+                const urlParams = new URLSearchParams(window.location.search);
+                var popuptemplatefile = 'fstemplate.html';
+                if (urlParams.has('RM') || urlParams.has('rm')) {
+                    popuptemplatefile = 'fstemplate_rm.html';
+                }
+                $.get(popuptemplatefile, function (pu_template) {
+                    $.get('tiletemplate.html', function (tiletemplatehtml) {
+                        // inject the popup window template
+                        tiletemplatehtml = tiletemplatehtml.replace(/<popuptemplate \/>/g, pu_template);
 
-                    // add all the list rows
-                    addSpecies(TemplateHTML);
+                        // replace the tile template tag with the tile template html
+                        TemplateHTML = TemplateHTML.replace(/<tiletemplate \/>/g, tiletemplatehtml);
 
-                    // initialize the table filter 
-                    var filtersConfig = {
-                        base_path: 'tablefilter/',
-                        btn_reset: true,
-                        rows_counter: true,
-                        loader: true,
-                        filters_row_index: 1,
-                        auto_filter: true,
-                        mark_active_columns: true,
-                        highlight_keywords: false,
-                        col_1: 'select',
-                        col_2: 'select',
-                        col_3: 'select',
-                        col_4: 'select',
-                        col_5: 'select',
-                        no_results_message: true,
-                        sticsticky_headers: true,
-                        alternate_rows: true,
-                        extensions: [{ name: 'sort' }]
-                    };
+                        // add all the list rows
+                        addSpecies(TemplateHTML);
 
-                    var tf = new TableFilter(document.querySelector('#listtable'), filtersConfig);
-                    tf.init();
+                        // initialize the table filter 
+                        var filtersConfig = {
+                            base_path: 'tablefilter/',
+                            btn_reset: true,
+                            rows_counter: true,
+                            loader: true,
+                            filters_row_index: 1,
+                            auto_filter: true,
+                            mark_active_columns: true,
+                            highlight_keywords: false,
+                            col_1: 'select',
+                            col_2: 'select',
+                            col_3: 'select',
+                            col_4: 'select',
+                            col_5: 'select',
+                            no_results_message: true,
+                            sticsticky_headers: true,
+                            alternate_rows: true,
+                            extensions: [{ name: 'sort' }]
+                        };
 
+                        var tf = new TableFilter(document.querySelector('#listtable'), filtersConfig);
+                        tf.init();
+
+                    }, 'text');
                 }, 'text');
             }, 'text');           
         }

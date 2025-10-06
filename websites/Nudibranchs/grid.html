@@ -41,46 +41,47 @@
                 .replace(/<wormsid \/>/g, spec.wormsid)
                 .replace(/<described \/>/g, spec.described)
                 .replace(/<ratio \/>/g, spec.sizeratio)
+                .replace(/<nameinfo \/>/g, spec.nameinfo)
                 .replace(/<size \/>/g, spec.size);
 
             $("#gridcontainer").append(template);
         }
 
         function addGridTiles() {
-
             $.ajaxSetup({
                 // Disable caching of AJAX responses
                 cache: false
             });
+
             const urlParams = new URLSearchParams(window.location.search);
-            var templatefile = 'tiletemplate.html';
-
+            var popuptemplatefile = 'fstemplate.html';
             if (urlParams.has('RM') || urlParams.has('rm')) {
-                templatefile = 'tiletemplaterm.html';
+                popuptemplatefile = 'fstemplate_rm.html';
             }
+            $.get(popuptemplatefile, function (pu_template) {
+                $.get('tiletemplate.html', function (data) {
+                    // inject the popup window template
+                    data = data.replace(/<popuptemplate \/>/g, pu_template);
+                    addSpecies(data);
 
-            //$.get('fstemplate.html', function (pu_template) {
-            //}, 'text');
+                    var $container = $('#gridcontainer').masonry({
+                        isFitWidth: true,
+                        isInitLayout: false
+                    });
 
-            $.get(templatefile, function (data) {
-                addSpecies(data);
+                    var $proxy = $('#gridcontainer');
 
-                var $container = $('#gridcontainer').masonry({
-                    isFitWidth: true,
-                    isInitLayout: false
-                });
+                    // bind on layout
+                    $container.masonry('on', 'layout', function () {
+                        $proxy.width($container.width());
+                    });
 
-                var $proxy = $('#gridcontainer');
-
-                // bind on layout
-                $container.masonry('on', 'layout', function () {
-                    $proxy.width($container.width());
-                });
-
-                // init masonry
-                $container.masonry();
-
+                    // init masonry
+                    $container.masonry();
+                }, 'text');
             }, 'text');
+
+            
         }
 
         function onload() {
