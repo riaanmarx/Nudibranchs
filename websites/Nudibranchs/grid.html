@@ -42,6 +42,7 @@
                 .replace(/<described \/>/g, spec.described)
                 .replace(/<ratio \/>/g, spec.sizeratio)
                 .replace(/<nameinfo \/>/g, spec.nameinfo)
+                .replace(/<ename \/>/g, spec.name)
                 .replace(/<size \/>/g, spec.size);
 
             $("#gridcontainer").append(template);

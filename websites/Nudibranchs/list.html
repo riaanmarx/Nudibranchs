@@ -88,6 +88,7 @@
                 .replace(/<other \/>/g, spec.otherinfo)
                 .replace(/<wormsid \/>/g, spec.wormsid)
                 .replace(/<desc \/>/g, spec.description)
+                .replace(/<ename \/>/g, spec.name)
                 .replace(/<food \/>/g, spec.food);
             // append row to table
             $("#tablebody").append(template);
