@@ -22,28 +22,18 @@
 
         function addSpec(template, spec) {
             if (spec.wormsid != '') {
-                template = template.replace(/<genusname \/> <specname \/>/g, "<a href='https://www.marinespecies.org/aphia.php?p=taxdetails&id=<wormsid />' target='_blank'><genusname /> <specname /></a>");
+                template = template.replace(/<genus \/> <species \/>/g, "<a href='https://www.marinespecies.org/aphia.php?p=taxdetails&id=<wormsid />' target='_blank'><genus /> <species /></a>");
             }
             if (spec.reviewed != 'Y') {
                 template = template
-                    .replace(/<genusname \/>/g, "*<genusname />")
+                    .replace(/<genus \/>/g, "*<genus />")
             }
-            template = template
-                .replace(/<imgfilename \/>/g, spec.photo)
-                .replace(/<photographer \/>/g, spec.photographer)
-                .replace(/<genusname \/>/g, spec.genus)
-                .replace(/<specname \/>/g, spec.species)
-                .replace(/<specff \/>/g, spec.ssfpage)
-                .replace(/<desc \/>/g, spec.description)
-                .replace(/<habitat \/>/g, spec.habitat)
-                .replace(/<food \/>/g, spec.food)
-                .replace(/<depth \/>/g, spec.depthrange)
-                .replace(/<wormsid \/>/g, spec.wormsid)
-                .replace(/<described \/>/g, spec.described)
-                .replace(/<ratio \/>/g, spec.sizeratio)
-                .replace(/<nameinfo \/>/g, spec.nameinfo)
-                .replace(/<ename \/>/g, spec.name)
-                .replace(/<size \/>/g, spec.size);
+
+            // loop through all the properties of the spec object and replace tags in template
+            Object.getOwnPropertyNames(spec).forEach(key => {
+                tag = new RegExp(`<${key} />`, "g");
+                template = template.replace(tag, spec[key]);
+            });
 
             $("#gridcontainer").append(template);
         }

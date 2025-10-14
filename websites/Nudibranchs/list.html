@@ -48,48 +48,18 @@
 
         function addSpec(template, spec) {
             if (spec.wormsid != '') {
-                template = template.replace(/<genusname \/> <specname \/>/g, "<a href='https://www.marinespecies.org/aphia.php?p=taxdetails&id=<wormsid />' target='_blank'><genusname /> <specname /></a>");
+                template = template.replace(/<genus \/> <species \/>/g, "<a href='https://www.marinespecies.org/aphia.php?p=taxdetails&id=<wormsid />' target='_blank'><genus /> <species /></a>");
             }
             if (spec.reviewed != 'Y') {
                 template = template
-                    .replace(/<genusname \/>/g, "*<genusname />")
+                    .replace(/<genus \/>/g, "*<genus />")
             }
+            // loop through all the properties of the spec object and replace tags in template
+            Object.getOwnPropertyNames(spec).forEach(key => {
+                tag = new RegExp(`<${key} />`, "g");
+                template = template.replace(tag, spec[key]);
+            });
 
-            // replace placeholder tags
-            template = template
-                .replace(/<imgfilename \/>/g, spec.photo)
-                .replace(/<photographer \/>/g, spec.photographer)
-                .replace(/<order \/>/g, spec.order)
-                .replace(/<family \/>/g, spec.family)
-                .replace(/<genusname \/>/g, spec.genus)
-                .replace(/<specname \/>/g, spec.species)
-                .replace(/<l_w_ratio \/>/g, spec.sizeratio)
-                .replace(/<maxlen \/>/g, spec.size)
-                .replace(/<ratio \/>/g, spec.sizeratio)
-                .replace(/<size \/>/g, spec.size)
-                .replace(/<habitat \/>/g, spec.habitat)
-                .replace(/<depth \/>/g, spec.depthrange)
-                .replace(/<aliases \/>/g, spec.aliases)
-                .replace(/<specff \/>/g, spec.ssfpage)
-                .replace(/<bodytype \/>/g, spec.bodytype)
-                .replace(/<backcolor \/>/g, spec.backgroundcolor)
-                .replace(/<lines \/>/g, spec.lines)
-                .replace(/<patches \/>/g, spec.spots)
-                .replace(/<rings \/>/g, spec.rings)
-                .replace(/<margins \/>/g, spec.margins)
-                .replace(/<dorsalapp \/>/g, spec.dorsalstruc)
-                .replace(/<ceratadetail \/>/g, spec.dorsalstrucdetail)
-                .replace(/<oralapp \/>/g, spec.oralapp)
-                .replace(/<rhinophoreshape \/>/g, spec.rhinophoreshape)
-                .replace(/<rhinophoredetail \/>/g, spec.rhinophoredetail)
-                .replace(/<gillshape \/>/g, spec.gillshape)
-                .replace(/<gills \/>/g, spec.gills)
-                .replace(/<name \/>/g, spec.nameinfo)
-                .replace(/<other \/>/g, spec.otherinfo)
-                .replace(/<wormsid \/>/g, spec.wormsid)
-                .replace(/<desc \/>/g, spec.description)
-                .replace(/<ename \/>/g, spec.name)
-                .replace(/<food \/>/g, spec.food);
             // append row to table
             $("#tablebody").append(template);
         }
